@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "prettier:check": "prettier --check \"**/*.{json,yml,md,sol,js,ts,jsx,tsx}\"",
-    "prettier:write": "prettier --write \"**/*.{json,yml,md,sol,js,ts,jsx,tsx}\"",
+    "prettier:check": "prettier --check \"**/*.{json,md,js,ts,jsx,tsx}\"",
+    "prettier:write": "prettier --write \"**/*.{json,md,js,ts,jsx,tsx}\"",
     "preview": "vite preview"
   },
   "dependencies": {
