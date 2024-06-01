@@ -24,6 +24,7 @@
     "react-dom": "^18.2.0",
     "react-json-view-lite": "^1.4.0",
     "viem": "^2.13.3",
+    "vite-plugin-radar": "^0.9.6",
     "wagmi": "^2.9.8"
   },
   "devDependencies": {
