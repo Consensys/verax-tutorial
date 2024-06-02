@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { VeraxSdk } from '@verax-attestation-registry/verax-sdk';
 import { useAccount } from 'wagmi';
-import { Hex } from 'viem';
+import { type Hex } from 'viem';
 
 export type CreatePortalProps = {
   veraxSdk: VeraxSdk;

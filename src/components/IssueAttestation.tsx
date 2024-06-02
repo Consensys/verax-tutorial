@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { VeraxSdk } from '@verax-attestation-registry/verax-sdk';
 import { useAccount } from 'wagmi';
-import { Address, Hex } from 'viem';
+import { type Address, type Hex } from 'viem';
 
 export type IssueAttestationProps = {
   veraxSdk: VeraxSdk;

@@ -6,7 +6,7 @@ import AttestationPreview from '../components/AttestationPreview.tsx';
 import { waitForTransactionReceipt } from 'viem/actions';
 import CreateSchema from '../components/CreateSchema.tsx';
 import CreatePortal from '../components/CreatePortal.tsx';
-import { Address, decodeEventLog, parseAbi } from 'viem';
+import { type Address, decodeEventLog, parseAbi } from 'viem';
 import { useAccount } from 'wagmi';
 import { wagmiConfig } from '../wagmiConfig.ts';
 
