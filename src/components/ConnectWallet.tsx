@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './ConnectWallet.css';
+// eslint-disable-next-line import/no-unresolved
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { useAccount, useEnsName } from 'wagmi';
 

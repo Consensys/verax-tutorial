@@ -1,5 +1,5 @@
 import { arbitrum, arbitrumSepolia, base, baseSepolia, linea, lineaSepolia, mainnet } from 'wagmi/chains';
-import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
+import { defaultWagmiConfig } from '@web3modal/wagmi';
 
 export const walletConnectProjectId = '1640042ae61e8c357b5b6034df2b7821';
 
