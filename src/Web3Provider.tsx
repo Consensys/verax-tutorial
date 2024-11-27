@@ -5,12 +5,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 import { wagmiConfig, walletConnectProjectId } from './wagmiConfig.ts';
 import { lineaSepolia } from 'wagmi/chains';
-import BaseMainnetIcon from './assets/base-mainnet.svg';
 import BaseSepoliaIcon from './assets/base-sepolia.svg';
-import LineaMainnetIcon from './assets/linea-mainnet.svg';
 import LineaSepoliaIcon from './assets/linea-sepolia.svg';
-import ArbitrumMainnetIcon from './assets/arbitrum-mainnet.svg';
 import ArbitrumSepoliaIcon from './assets/arbitrum-sepolia.svg';
+import BscTestnetIcon from './assets/bsc-testnet.svg';
 
 const queryClient = new QueryClient();
 
@@ -20,12 +18,10 @@ createWeb3Modal({
   enableAnalytics: true,
   defaultChain: lineaSepolia,
   chainImages: {
-    8453: BaseMainnetIcon,
-    84_532: BaseSepoliaIcon,
-    59_144: LineaMainnetIcon,
     59_141: LineaSepoliaIcon,
-    42_161: ArbitrumMainnetIcon,
     421_614: ArbitrumSepoliaIcon,
+    84_532: BaseSepoliaIcon,
+    97: BscTestnetIcon,
   },
 });
 
