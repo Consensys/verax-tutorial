@@ -30,23 +30,17 @@ const Home = ({ title }: HomeProps) => {
     if (chain && address) {
       let sdkConf;
       switch (chain.id) {
-        case 8453:
-          sdkConf = VeraxSdk.DEFAULT_BASE_FRONTEND;
-          break;
         case 84532:
           sdkConf = VeraxSdk.DEFAULT_BASE_SEPOLIA_FRONTEND;
-          break;
-        case 59144:
-          sdkConf = VeraxSdk.DEFAULT_LINEA_MAINNET_FRONTEND;
           break;
         case 59141:
           sdkConf = VeraxSdk.DEFAULT_LINEA_SEPOLIA_FRONTEND;
           break;
-        case 42161:
-          sdkConf = VeraxSdk.DEFAULT_ARBITRUM_FRONTEND;
-          break;
         case 421614:
           sdkConf = VeraxSdk.DEFAULT_ARBITRUM_SEPOLIA_FRONTEND;
+          break;
+        case 97:
+          sdkConf = VeraxSdk.DEFAULT_BSC_TESTNET_FRONTEND;
           break;
         default:
           sdkConf = VeraxSdk.DEFAULT_LINEA_SEPOLIA_FRONTEND;
