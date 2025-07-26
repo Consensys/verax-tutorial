@@ -1,5 +1,5 @@
-import { arbitrumSepolia, baseSepolia, bscTestnet, lineaSepolia, mainnet } from 'wagmi/chains';
-import { defaultWagmiConfig } from '@web3modal/wagmi';
+import { arbitrumSepolia, baseSepolia, bscTestnet, lineaSepolia, mainnet } from 'viem/chains';
+import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 import { http } from 'wagmi';
 
 export const walletConnectProjectId = '1640042ae61e8c357b5b6034df2b7821';
@@ -12,11 +12,9 @@ const metadata = {
   icons: ['https://tutorial.examples.ver.ax/favicon.ico'],
 };
 
-const chains = [lineaSepolia, arbitrumSepolia, baseSepolia, bscTestnet, mainnet] as const;
-export const wagmiConfig = defaultWagmiConfig({
+export const wagmiAdapter = new WagmiAdapter({
+  networks: [lineaSepolia, arbitrumSepolia, baseSepolia, bscTestnet, mainnet],
   projectId: walletConnectProjectId,
-  metadata,
-  chains,
   transports: {
     [lineaSepolia.id]: http(`https://linea-sepolia.infura.io/v3/${infuraApiKey}`),
     [arbitrumSepolia.id]: http(`https://arbitrum-sepolia.infura.io/v3/${infuraApiKey}`),
@@ -25,3 +23,5 @@ export const wagmiConfig = defaultWagmiConfig({
     [mainnet.id]: http(`https://mainnet.infura.io/v3/${infuraApiKey}`),
   },
 });
+
+export { metadata };

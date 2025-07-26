@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
-import { createWeb3Modal } from '@web3modal/wagmi/react';
+import { createAppKit } from '@reown/appkit/react';
+import { arbitrumSepolia, baseSepolia, bscTestnet, lineaSepolia, mainnet } from 'viem/chains';
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
-import { wagmiConfig, walletConnectProjectId } from './wagmiConfig.ts';
-import { lineaSepolia } from 'wagmi/chains';
+import { metadata, wagmiAdapter, walletConnectProjectId } from './wagmiConfig.ts';
 import BaseSepoliaIcon from './assets/base-sepolia.svg';
 import LineaSepoliaIcon from './assets/linea-sepolia.svg';
 import ArbitrumSepoliaIcon from './assets/arbitrum-sepolia.svg';
@@ -12,11 +12,21 @@ import BscTestnetIcon from './assets/bsc-testnet.svg';
 
 const queryClient = new QueryClient();
 
-createWeb3Modal({
-  wagmiConfig,
+createAppKit({
+  adapters: [wagmiAdapter],
+  networks: [lineaSepolia, arbitrumSepolia, baseSepolia, bscTestnet, mainnet],
+  metadata: metadata,
   projectId: walletConnectProjectId,
-  enableAnalytics: true,
-  defaultChain: lineaSepolia,
+  features: {
+    analytics: true,
+    socials: false,
+    email: false,
+    pay: false,
+    swaps: false,
+    onramp: false,
+    legalCheckbox: false,
+  },
+  defaultNetwork: lineaSepolia,
   chainImages: {
     59_141: LineaSepoliaIcon,
     421_614: ArbitrumSepoliaIcon,
@@ -31,7 +41,7 @@ interface Web3ProviderProps {
 
 export function Web3Provider({ children }: Readonly<Web3ProviderProps>) {
   return (
-    <WagmiProvider config={wagmiConfig}>
+    <WagmiProvider config={wagmiAdapter.wagmiConfig}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </WagmiProvider>
   );

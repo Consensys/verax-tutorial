@@ -8,7 +8,7 @@ import CreateSchema from '../components/CreateSchema.tsx';
 import CreatePortal from '../components/CreatePortal.tsx';
 import { type Address, decodeEventLog, parseAbi } from 'viem';
 import { useAccount } from 'wagmi';
-import { wagmiConfig } from '../wagmiConfig.ts';
+import { wagmiAdapter } from '../wagmiConfig.ts';
 
 export type HomeProps = {
   title: string;
@@ -52,14 +52,14 @@ const Home = ({ title }: HomeProps) => {
   }, [chain, address]);
 
   const handleSchemaTx = async (hash: Address) => {
-    const receipt = await waitForTransactionReceipt(wagmiConfig.getClient(), {
+    const receipt = await waitForTransactionReceipt(wagmiAdapter.wagmiConfig.getClient(), {
       hash,
     });
     setSchemaId(receipt.logs[0].topics[1]);
   };
 
   const handlePortalTx = async (hash: Address) => {
-    const receipt = await waitForTransactionReceipt(wagmiConfig.getClient(), {
+    const receipt = await waitForTransactionReceipt(wagmiAdapter.wagmiConfig.getClient(), {
       hash,
     });
     const decodedLogs = decodeEventLog({
@@ -71,7 +71,7 @@ const Home = ({ title }: HomeProps) => {
   };
 
   const handleAttestationTx = async (hash: Address) => {
-    const receipt = await waitForTransactionReceipt(wagmiConfig.getClient(), {
+    const receipt = await waitForTransactionReceipt(wagmiAdapter.wagmiConfig.getClient(), {
       hash,
     });
     setAttestationId(receipt.logs[0].topics[1]);

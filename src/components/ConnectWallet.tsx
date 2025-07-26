@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import './ConnectWallet.css';
 // eslint-disable-next-line import/no-unresolved
-import { useWeb3Modal } from '@web3modal/wagmi/react';
+import { useAppKit } from '@reown/appkit/react';
 import { useAccount, useEnsName } from 'wagmi';
 
-const ConnectWallet = () => {
+function ConnectWallet() {
   const [truncatedAddress, setTruncatedAddress] = useState<string>();
 
-  const { open } = useWeb3Modal();
-  const { isConnected, address } = useAccount();
+  const { address, isConnected } = useAccount();
+  const { open } = useAppKit();
   const { data: ensName } = useEnsName({
     address,
     chainId: 1,
@@ -22,9 +22,9 @@ const ConnectWallet = () => {
 
   return (
     <button onClick={() => open()} className={'connect-wallet'}>
-      {isConnected ? ensName ?? truncatedAddress : 'CONNECT WALLET'}
+      {isConnected ? (ensName ?? truncatedAddress) : 'CONNECT WALLET'}
     </button>
   );
-};
+}
 
 export default ConnectWallet;
