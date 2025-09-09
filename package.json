@@ -26,7 +26,7 @@
     "react-dom": "^19.1.0",
     "react-json-view-lite": "^2.4.1",
     "viem": "^2.33.1",
-    "vite": "^7.0.6",
+    "vite": "^7.1.5",
     "vite-plugin-radar": "^0.10.1",
     "wagmi": "^2.16.0"
   },
