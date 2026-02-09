@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { VeraxSdk } from '@verax-attestation-registry/verax-sdk';
 import ConnectWallet from '../components/ConnectWallet.tsx';
 import IssueAttestation from '../components/IssueAttestation.tsx';
@@ -7,7 +7,7 @@ import { waitForTransactionReceipt } from 'viem/actions';
 import CreateSchema from '../components/CreateSchema.tsx';
 import CreatePortal from '../components/CreatePortal.tsx';
 import { type Address, decodeEventLog, parseAbi } from 'viem';
-import { useAccount } from 'wagmi';
+import { useConnection } from 'wagmi';
 import { wagmiAdapter } from '../wagmiConfig.ts';
 
 export type HomeProps = {
@@ -15,40 +15,37 @@ export type HomeProps = {
 };
 
 const Home = ({ title }: HomeProps) => {
-  const [veraxSdk, setVeraxSdk] = useState<VeraxSdk>();
   const [schemaId, setSchemaId] = useState<Address>();
   const [portalId, setPortalId] = useState<Address>();
   const [attestationId, setAttestationId] = useState<string>();
 
-  const { address, isConnected, chain } = useAccount();
+  const { address, isConnected, chain } = useConnection();
 
   useEffect(() => {
     document.title = title;
   }, [title]);
 
-  useEffect(() => {
-    if (chain && address) {
-      let sdkConf;
-      switch (chain.id) {
-        case 84532:
-          sdkConf = VeraxSdk.DEFAULT_BASE_SEPOLIA_FRONTEND;
-          break;
-        case 59141:
-          sdkConf = VeraxSdk.DEFAULT_LINEA_SEPOLIA_FRONTEND;
-          break;
-        case 421614:
-          sdkConf = VeraxSdk.DEFAULT_ARBITRUM_SEPOLIA_FRONTEND;
-          break;
-        case 97:
-          sdkConf = VeraxSdk.DEFAULT_BSC_TESTNET_FRONTEND;
-          break;
-        default:
-          sdkConf = VeraxSdk.DEFAULT_LINEA_SEPOLIA_FRONTEND;
-          break;
-      }
-      const sdk = new VeraxSdk(sdkConf, address);
-      setVeraxSdk(sdk);
+  const veraxSdk = useMemo(() => {
+    if (!chain || !address) return undefined;
+    let sdkConf;
+    switch (chain.id) {
+      case 84532:
+        sdkConf = VeraxSdk.DEFAULT_BASE_SEPOLIA_FRONTEND;
+        break;
+      case 59141:
+        sdkConf = VeraxSdk.DEFAULT_LINEA_SEPOLIA_FRONTEND;
+        break;
+      case 421614:
+        sdkConf = VeraxSdk.DEFAULT_ARBITRUM_SEPOLIA_FRONTEND;
+        break;
+      case 97:
+        sdkConf = VeraxSdk.DEFAULT_BSC_TESTNET_FRONTEND;
+        break;
+      default:
+        sdkConf = VeraxSdk.DEFAULT_LINEA_SEPOLIA_FRONTEND;
+        break;
     }
+    return new VeraxSdk(sdkConf, address);
   }, [chain, address]);
 
   const handleSchemaTx = async (hash: Address) => {

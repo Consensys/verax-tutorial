@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './AttestationPreview.css';
-import { Attestation, VeraxSdk } from '@verax-attestation-registry/verax-sdk';
+import { type Attestation, VeraxSdk } from '@verax-attestation-registry/verax-sdk';
 import { allExpanded, darkStyles, JsonView } from 'react-json-view-lite';
 import 'react-json-view-lite/dist/index.css';
 
