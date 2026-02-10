@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { VeraxSdk } from '@verax-attestation-registry/verax-sdk';
-import { useAccount } from 'wagmi';
+import { useConnection } from 'wagmi';
 import { type Address, type Hex } from 'viem';
 
 export type CreateSchemaProps = {
@@ -17,7 +17,7 @@ const CreateSchema = ({ veraxSdk, getTxHash, getSchemaId }: CreateSchemaProps) =
   const [schemaId, setSchemaId] = useState<string>('');
   const [schemaExists, setSchemaExists] = useState<boolean>(false);
 
-  const { isConnected } = useAccount();
+  const { isConnected } = useConnection();
 
   useEffect(() => {
     const fetchSchema = async () => {

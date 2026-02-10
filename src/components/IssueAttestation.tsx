@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { VeraxSdk } from '@verax-attestation-registry/verax-sdk';
-import { useAccount } from 'wagmi';
+import { useConnection } from 'wagmi';
 import { type Address, type Hex } from 'viem';
 
 export type IssueAttestationProps = {
@@ -14,7 +14,7 @@ const IssueAttestation = ({ veraxSdk, getTxHash, schemaId, portalId }: IssueAtte
   const [txHash, setTxHash] = useState<string>('');
   const [error, setError] = useState<string>('');
 
-  const { address, isConnected } = useAccount();
+  const { address, isConnected } = useConnection();
 
   const issueAttestation = async () => {
     if (address) {

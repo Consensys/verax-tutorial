@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { VeraxSdk } from '@verax-attestation-registry/verax-sdk';
-import { useAccount } from 'wagmi';
+import { useConnection } from 'wagmi';
 import { type Hex } from 'viem';
 
 export type CreatePortalProps = {
@@ -12,7 +12,7 @@ const CreatePortal = ({ veraxSdk, getTxHash }: CreatePortalProps) => {
   const [txHash, setTxHash] = useState<Hex>();
   const [error, setError] = useState<string>('');
 
-  const { isConnected } = useAccount();
+  const { isConnected } = useConnection();
 
   const createPortal = async () => {
     try {
