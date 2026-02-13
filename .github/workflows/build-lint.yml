@@ -8,9 +8,13 @@ on:
     branches:
       - main
 
+permissions: {} # lock everything by default (least-privilege)
+
 jobs:
   build-lint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Check out the repo
