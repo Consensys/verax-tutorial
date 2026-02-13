@@ -12,6 +12,7 @@ permissions: {} # lock everything by default (least-privilege)
 
 jobs:
   build-lint:
+    name: Build & Lint
     runs-on: ubuntu-latest
     permissions:
       contents: read
