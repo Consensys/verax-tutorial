@@ -2,8 +2,8 @@ import { arbitrumSepolia, baseSepolia, bscTestnet, lineaSepolia, mainnet } from 
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 import { http } from 'wagmi';
 
-export const walletConnectProjectId = '1640042ae61e8c357b5b6034df2b7821';
-const infuraApiKey: string = '2VbuXFYphoB468fyFPinOmis7o5';
+export const walletConnectProjectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID;
+const infuraApiKey = import.meta.env.VITE_INFURA_API_KEY;
 
 const metadata = {
   name: 'Verax | Tutorial',
